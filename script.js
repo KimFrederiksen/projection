@@ -35,18 +35,24 @@ function preload() {
 // }
 
 
-
-
-
 const particles = [];
 const velocity = 0.7;
+
+let img;
+
+function preload() {
+	img = loadImage('https://github.com/KimFrederiksen/projection/blob/main/embroidery.png');
+}
 
 
 function setup() {
     // createCanvas(window.innerWidth, window.innerHeight);
     createCanvas(192, 157);
+	frameRate(25);
+	colorMode(HSB, 360, 100, 100);
     
-    const particlesLength = Math.floor(window.innerWidth / 15);
+    // const particlesLength = Math.floor(window.innerWidth / 33);
+	const particlesLength = 10;
     for(let i = 0; i < particlesLength; i++) {
 		p = new Particle();
 		px = p.pos.x;
@@ -83,11 +89,12 @@ function setup() {
 
 function draw() {
     background(55, 100, 144);
-    //image(img, 0, 0);
-    particles.forEach((p, index) => {
-//	p.update();
-	p.draw();
-	p.checkParticles(particles.slice(index));
+	image(img, 0, 0);
+    // image(img, 0, 0);
+    // particles.forEach((p, index) => {
+	// p.update();
+	// p.draw();
+	// p.checkParticles(particles.slice(index));
     });
 }
 
