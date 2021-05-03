@@ -5,7 +5,7 @@ let img;
 
 function preload() {
 	img = loadImage(
-		'https://raw.githubusercontent.com/KimFrederiksen/projection/main/embroidery.jpg');
+		'https://raw.githubusercontent.com/KimFrederiksen/projection/main/embroidery_bitmap.png');
 }
 
 
