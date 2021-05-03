@@ -4,7 +4,8 @@ let img;
 let fr = 30;
 
 function preload() {
-	img = loadImage('https://raw.githubusercontent.com/KimFrederiksen/projection/main/embroidery_bitmap.png');
+	// img = loadImage('https://raw.githubusercontent.com/KimFrederiksen/projection/main/embroidery_bitmap.png');
+	img = loadImage('https://raw.githubusercontent.com/KimFrederiksen/projection/main/template.png');
 }
 
 const particles = [];
@@ -35,7 +36,7 @@ function draw() {
     createCanvas(w=192, h=157);
 	noStroke(fill(255));
 
-	// image(img, 0, 0);
+	image(img, 0, 0);
 
     particles.forEach((p, index) => {
 	p.update();
@@ -48,6 +49,33 @@ function draw() {
 class Particle {
     constructor() {
         this.pos = createVector(random(width), random(height));
+		this.x = this.pos.x;
+		this.y = this.pos.y;
+		//make sure we are on the canvas
+		if (this.x > 0 && this.x <= 36) {
+			if (this.y > 0 && this.y < 32) {
+				this.pos.y = 32;
+			}
+		}
+		
+		if (this.x > 36 && this.x <= 72) {
+			if (this.y > 0 && this.y < 16) {
+				this.pos.y = 16;
+			}
+		}
+
+		if (this.x > 120 && this.x <= 156) {
+			if (this.y > 0 && this.y < 16) {
+				this.pos.y = 16;
+			}
+		}
+
+		if (this.x > 156 && this.x <= 192) {
+			if (this.y > 0 && this.y < 32) {
+				this.pos.y = 32;
+			}
+		}
+
 		this.vel = createVector(random(-2*velocity, 2*velocity), random(-2*velocity, 2*velocity));
 		this.size = 2;
     }
@@ -61,71 +89,46 @@ class Particle {
     // Draw single particle
     draw() {
 	noStroke();
-	fill('rgba(0, 12, 244, 1.0)');
+	fill('rgba(255, 255, 255, 1.0)');
 	circle(this.pos.x, this.pos.y, this.size);
     }
 
     // Detect Edges -------------------------------------------
     edges() {
 		
+
+
 	if(this.pos.x >= 0 && this.pos.x <= 36) {
 		if(this.pos.y < 32 || this.pos.y > height) {
-			this.vel.y *=-1;			
+			this.vel.y *=-1;
 		}
 	}
 
 	if(this.pos.x >= 36 && this.pos.x <= 72) {
 		if(this.pos.y < 16 || this.pos.y > height) {
-			this.vel.y *=-1;			
+			this.vel.y *=-1;
 		}
 	}
 
 	if(this.pos.x >= 72 && this.pos.x <= 120) {
 		if(this.pos.y < 0 || this.pos.y > height) {
-			this.vel.y *=-1;			
+			this.vel.y *=-1;
 		}
 	}
 
 	if(this.pos.x >= 120 && this.pos.x <= 156) {
 		if(this.pos.y < 16 || this.pos.y > height) {
-			this.vel.y *=-1;			
+			this.vel.y *=-1;
 		}
 	}
 
 	if(this.pos.x >= 156 && this.pos.x <= width) {
 		if(this.pos.y < 32 || this.pos.y > height) {
-			this.vel.y *=-1;			
+			this.vel.y *=-1;
 		}
 	}
-
 	
-	if(this.pos.x < 0 || this.pos.x > width) {
-	    this.vel.x *= -1;
-	}
-	if(this.pos.y < 0 || this.pos.y > height) {
-	    this.vel.y *=-1;
-	}
 
-
-	// if(this.pos.y >= 0 && this.pos.y <= 16) {
-	// 	if(this.pos.x < 72 || this.pos.y > 120) {
-	// 		this.vel.x *=-1;
-	// 	}
-	// }
-
-	// if(this.pos.y >= 16 && this.pos.y <= 32) {
-	// 	if(this.pos.x < 36|| this.pos.y > 156) {
-	// 		this.vel.x *=-1;
-	// 	}
-	// }
-
-	// if(this.pos.y >= 36 && this.pos.y <= height) {
-	// 	if(this.pos.x < 0 || this.pos.y > width) {
-	// 		this.vel.x *=-1;
-	// 	}
-	// }
-
-		
     }
 
     // Connect particles
@@ -133,7 +136,7 @@ class Particle {
 	particles.forEach(particle => {
 	    const d = dist(this.pos.x, this.pos.y, particle.pos.x, particle.pos.y);
 	    if(d < 60){
-		stroke('rgba(0, 12, 144, 0.2)');
+		stroke('rgba(255, 255, 255, 0.1)');
 		line(this.pos.x, this.pos.y, particle.pos.x, particle.pos.y);
 	    }
 	});
