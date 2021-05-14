@@ -38,11 +38,11 @@ function draw() {
 
 	image(img, 0, 0);
 
-    particles.forEach((p, index) => {
-	p.update();
-	p.draw();
-	p.checkParticles(particles.slice(index));
-    });
+    // particles.forEach((p, index) => {
+	// p.update();
+	// p.draw();
+	// p.checkParticles(particles.slice(index));
+    // });
 }
 
 
